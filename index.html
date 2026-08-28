@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="ckb" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بانگهێشتنامەی هاوسەرگیری</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;700&display=swap');
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Noto Naskh Arabic', serif;
+        }
+
+        body {
+            background-color: #f8f6f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 450px;
+            background: #ffffff;
+            min-height: 100vh;
+            position: relative;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        /* ستایلی ڤیدیۆکان */
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 10;
+            transition: opacity 1s ease;
+        }
+
+        .click-btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 20;
+            padding: 15px 30px;
+            background: rgba(212, 175, 55, 0.9);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+
+        .click-btn:hover {
+            background: #b89628;
+            transform: translate(-50%, -50%) scale(1.05);
+        }
+
+        /* دیزاینی بانگهێشتنامەکە */
+        .card-content {
+            padding: 30px 20px;
+            text-align: center;
+            opacity: 0;
+            transition: opacity 1.5s ease;
+            background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(248,246,240,1) 100%);
+            border: 15px solid transparent;
+            border-image: url('https://png.pngtree.com/png-vector/20220804/ourmid/pngtree-vintage-gold-frame-png-image_6098670.png') 30 round;
+        }
+
+        .bismillah {
+            font-size: 1.4rem;
+            color: #b89628;
+            margin-bottom: 15px;
+        }
+
+        .quran-ayah {
+            font-size: 0.95rem;
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 25px;
+            padding: 0 10px;
+        }
+
+        .invitation-text {
+            font-size: 1rem;
+            color: #333;
+            line-height: 1.9;
+            margin-bottom: 20px;
+        }
+
+        .names {
+            font-size: 2.2rem;
+            color: #b89628;
+            font-weight: bold;
+            margin: 20px 0;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .details-box {
+            margin: 25px 0;
+            background: rgba(212, 175, 55, 0.05);
+            padding: 15px;
+            border-radius: 12px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .detail-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin: 12px 0;
+            font-size: 1.05rem;
+            color: #444;
+        }
+
+        .footer-text {
+            margin-top: 25px;
+            font-size: 0.95rem;
+            color: #777;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <button id="startBtn" class="click-btn">بۆ کردنەوە کلیک بکە</button>
+
+    <video id="video1" class="video-overlay hidden" playsinline muted>
+        <source src="https://raw.githubusercontent.com/kakfaro/projekt1/main/From%20Klickpin.com-%20Soft%20peaceful%20sayings%20and%20clever%20inspiration%20on%20a%20budget%20for%20your%20next%20post-pin-id-986147649682857514.mov" type="video/mp4">
+    </video>
+
+    <video id="video2" class="video-overlay hidden" playsinline muted>
+        <source src="https://raw.githubusercontent.com/kakfaro/projekt1/main/copy_461DF10B-EED8-4A14-9612-7FC3C94F87FB.mov" type="video/mp4">
+    </video>
+
+    <video id="video3" class="video-overlay hidden" playsinline muted>
+        <source src="https://raw.githubusercontent.com/kakfaro/projekt1/main/a_Make_it_a_little_spa.mp4" type="video/mp4">
+    </video>
+
+    <audio id="bgAudio" loop preload="auto">
+        <source src="https://raw.githubusercontent.com/kakfaro/projekt1/main/v24044gl0000d9vh79nog65uh9an4j7g.mp4" type="video/mp4">
+    </audio>
+
+    <div id="cardContent" class="card-content hidden">
+        <div class="bismillah">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+        
+        <div class="quran-ayah">
+            وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً
+        </div>
+
+        <div class="invitation-text">
+            دڵەکانمان بە خۆشەویستی و سۆزەوە ئاوێتەبوون،<br>
+            بۆیەک بە شانازییەوە ئێوە بانگهێشتنازییەوە ئەیوا<br>
+            بانگهێشت دەکەین بۆ ئاهەنگی هاوسەرگیریمان:
+        </div>
+
+        <div class="names">ئەیلی و میر</div>
+
+        <div class="details-box">
+            <div class="detail-item">
+                📅 <span>٢٥ی مانگی ١٠ی ٢٠٢٤</span>
+            </div>
+            <div class="detail-item">
+                ⏰ <span>کاتژمێر ٧ی ئێواره</span>
+            </div>
+            <div class="detail-item">
+                📍 <span>تەلار تەباری زێرین، هەولێر</span>
+            </div>
+        </div>
+
+        <div class="footer-text">
+            ئامادەبوونی ئێوە دڵخۆشمان دەکات.
+        </div>
+    </div>
+</div>
+
+<script>
+    const startBtn = document.getElementById('startBtn');
+    const video1 = document.getElementById('video1');
+    const video2 = document.getElementById('video2');
+    const video3 = document.getElementById('video3');
+    const bgAudio = document.getElementById('bgAudio');
+    const cardContent = document.getElementById('cardContent');
+
+    startBtn.addEventListener('click', () => {
+        startBtn.classList.add('hidden');
+        
+        // دەستپێکردنی دەنگەکە
+        bgAudio.play().catch(e => console.log("Audio play error:", e));
+
+        // لێدانی ڤیدیۆی یەکەم
+        video1.classList.remove('hidden');
+        video1.play();
+    });
+
+    // بەستنەوەی ڤیدیۆی یەکەم بە دووەم
+    video1.onended = () => {
+        video1.classList.add('hidden');
+        video2.classList.remove('hidden');
+        video2.play();
+    };
+
+    // بەستنەوەی ڤیدیۆی دووەم بە سێیەم (قورئانەکە)
+    video2.onended = () => {
+        video2.classList.add('hidden');
+        video3.classList.remove('hidden');
+        video3.play();
+    };
+
+    // دوای تەواوبوونی ڤیدیۆی قورئانەکە، بانگهێشتنامەکە پیشان بدە
+    video3.onended = () => {
+        video3.classList.add('hidden');
+        cardContent.classList.remove('hidden');
+        setTimeout(() => {
+            cardContent.style.opacity = '1';
+        }, 50);
+    };
+</script>
+
+</body>
+</html>
