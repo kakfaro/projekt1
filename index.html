@@ -17,6 +17,7 @@
             align-items: center;
             min-height: 100vh;
             overflow: hidden;
+            font-family: sans-serif;
         }
         .container {
             position: relative;
@@ -41,15 +42,15 @@
 <body>
 
 <div class="container">
-    <video id="vid1" class="active" autoplay muted playsinline>
+    <video id="vid1" class="active" playsinline muted autoplay>
         <source src="https://raw.githubusercontent.com/kakfaro/projekt1/main/From%20Klickpin.com-%20Soft%20peaceful%20sayings%20and%20clever%20inspiration%20on%20a%20budget%20for%20your%20next%20post-pin-id-986147649682857514.mov" type="video/mp4">
     </video>
 
-    <video id="vid2" playsinline>
+    <video id="vid2" playsinline muted>
         <source src="https://raw.githubusercontent.com/kakfaro/projekt1/main/copy_461DF10B-EED8-4A14-9612-7FC3C94F87FB.mov" type="video/mp4">
     </video>
 
-    <video id="vid3" playsinline loop>
+    <video id="vid3" playsinline muted loop>
         <source src="https://raw.githubusercontent.com/kakfaro/projekt1/main/a_Make_it_a_little_spa.mp4" type="video/mp4">
     </video>
 </div>
@@ -64,24 +65,32 @@
     const vid3 = document.getElementById('vid3');
     const audio = document.getElementById('bgAudio');
 
-    // هه‌وڵدان بۆ لێدانی دەنگ لەگەڵ ڕەن بوونی پەڕەکە
-    window.addEventListener('load', () => {
-        audio.play().catch(() => {
-            // ئەگەر وێبگەڕ ڕێگەی نەدا، بە کەمی لێدانی یەکەم کرتە دەنگەکە چالاک دەکات
-            document.body.addEventListener('click', () => {
+    // لێدانی موزیقاکە بە سەربەخۆیی
+    function playBackgroundAudio() {
+        audio.play().catch(error => {
+            // ئەگەر وێبگەڕ ڕێگەی نەدا لە سەرەتادا خۆکار لێبدرێت، بە یەکەم کلیکی بەکارهێنەر دەستپێدەکات
+            const startAudio = () => {
                 audio.play();
-            }, { once: true });
+                document.removeEventListener('click', startAudio);
+                document.removeEventListener('touchstart', startAudio);
+            };
+            document.addEventListener('click', startAudio);
+            document.addEventListener('touchstart', startAudio);
         });
+    }
+
+    // دەستپێکردنی موزیقاکە لەگەڵ باربوونی پەڕەکە
+    window.addEventListener('load', () => {
+        playBackgroundAudio();
     });
 
-    // گواستنەوە لە ڤیدیۆی یەکەمەوە بۆ دووەم
+    // زنجیرەی گواستنەوەی ڤیدیۆکان (موزیقاکە بێبڕانەوە بەردەوام دەبێت)
     vid1.onended = function() {
         vid1.classList.remove('active');
         vid2.classList.add('active');
         vid2.play();
     };
 
-    // گواستنەوە لە ڤیدیۆی دووەمەوە بۆ سێیەم (بانگهێشتنامە)
     vid2.onended = function() {
         vid2.classList.remove('active');
         vid3.classList.add('active');
