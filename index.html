@@ -42,21 +42,25 @@
 <body>
 
 <div class="container">
+    <!-- ڤیدیۆی یەکەم: کردنەوەی دەرگا -->
     <video id="vid1" class="active" playsinline muted autoplay>
         <source src="https://raw.githubusercontent.com/kakfaro/projekt1/main/From%20Klickpin.com-%20Soft%20peaceful%20sayings%20and%20clever%20inspiration%20on%20a%20budget%20for%20your%20next%20post-pin-id-986147649682857514.mov" type="video/mp4">
     </video>
 
+    <!-- ڤیدیۆی دووەم: قورئانی پیرۆز -->
     <video id="vid2" playsinline muted>
         <source src="https://raw.githubusercontent.com/kakfaro/projekt1/main/copy_461DF10B-EED8-4A14-9612-7FC3C94F87FB.mov" type="video/mp4">
     </video>
 
+    <!-- ڤیدیۆی سێیەم: بانگهێشتنامە -->
     <video id="vid3" playsinline muted loop>
         <source src="https://raw.githubusercontent.com/kakfaro/projekt1/main/a_Make_it_a_little_spa.mp4" type="video/mp4">
     </video>
 </div>
 
+<!-- دەنگی پاشبنەما (فایلی موزیکە نوێکە) -->
 <audio id="bgAudio" loop preload="auto">
-    <source src="https://raw.githubusercontent.com/kakfaro/projekt1/main/v24044gl0000d9vh79nog65uh9an4j7g.mp4" type="audio/mp4">
+    <source src="https://raw.githubusercontent.com/kakfaro/projekt1/main/v24044gl0000d9vh79nog65uh9an4j7g.mov" type="video/mp4">
 </audio>
 
 <script>
@@ -68,7 +72,7 @@
     // لێدانی موزیقاکە بە سەربەخۆیی
     function playBackgroundAudio() {
         audio.play().catch(error => {
-            // ئەگەر وێبگەڕ ڕێگەی نەدا لە سەرەتادا خۆکار لێبدرێت، بە یەکەم کلیکی بەکارهێنەر دەستپێدەکات
+            // چالاککردنی دەنگ بە یەکەم کاتژمێر یان لمس کردنی شاشە
             const startAudio = () => {
                 audio.play();
                 document.removeEventListener('click', startAudio);
@@ -79,12 +83,12 @@
         });
     }
 
-    // دەستپێکردنی موزیقاکە لەگەڵ باربوونی پەڕەکە
+    // دەستپێکردنی موزیقاکە کاتێک پەڕەکە بار دەبێت
     window.addEventListener('load', () => {
         playBackgroundAudio();
     });
 
-    // زنجیرەی گواستنەوەی ڤیدیۆکان (موزیقاکە بێبڕانەوە بەردەوام دەبێت)
+    // زنجیرەی گواستنەوەی ڤیدیۆکان
     vid1.onended = function() {
         vid1.classList.remove('active');
         vid2.classList.add('active');
